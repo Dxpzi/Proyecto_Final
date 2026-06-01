@@ -35,7 +35,7 @@ public class GestorPrestamos {
 
         do {
 
-            System.out.println("\n========= MENÚ PRINCIPAL =========");
+            System.out.println("\n========= MENU PRINCIPAL =========");
             System.out.println("1. Estudiantes Ingeniería");
             System.out.println("2. Estudiantes Diseño");
             System.out.println("3. Imprimir Inventario");
@@ -85,7 +85,7 @@ public class GestorPrestamos {
 
         do {
 
-            System.out.println("\n===== INGENIERÍA =====");
+            System.out.println("\n===== INGENIERIA =====");
             System.out.println("1. Registrar préstamo");
             System.out.println("2. Modificar préstamo");
             System.out.println("3. Devolver equipo");
@@ -130,7 +130,7 @@ public class GestorPrestamos {
 
         do {
 
-            System.out.println("\n===== DISEÑO =====");
+            System.out.println("\n===== DISENO =====");
             System.out.println("1. Registrar préstamo");
             System.out.println("2. Modificar préstamo");
             System.out.println("3. Devolver equipo");
@@ -184,6 +184,11 @@ public class GestorPrestamos {
 
     public void modificarIngenieria() {
 
+        if (vectorIngenieria.isEmpty()) {
+            System.out.println("No hay registros de ingeniería para modificar.");
+            return;
+        }
+
         System.out.println("Modificar Ingeniería");
     }
 
@@ -200,6 +205,11 @@ public class GestorPrestamos {
     }
 
     public void buscarIngenieria() {
+
+        if (vectorIngenieria.isEmpty()) {
+            System.out.println("No hay registros de ingeniería para buscar.");
+            return;
+        }
 
         System.out.println("Buscar Ingeniería");
     }
@@ -219,6 +229,11 @@ public class GestorPrestamos {
 
     public void modificarDiseno() {
 
+        if (vectorDiseno.isEmpty()) {
+            System.out.println("No hay registros de diseño para modificar.");
+            return;
+        }
+
         System.out.println("Modificar Diseño");
     }
 
@@ -235,6 +250,11 @@ public class GestorPrestamos {
     }
 
     public void buscarDiseno() {
+
+        if (vectorDiseno.isEmpty()) {
+            System.out.println("No hay registros de diseño para buscar.");
+            return;
+        }
 
         System.out.println("Buscar Diseño");
     }
