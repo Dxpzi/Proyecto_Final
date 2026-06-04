@@ -32,7 +32,7 @@ public class GestorPrestamos {
         val = new Validaciones();
     }
 
-    public void menuPrincipal() {
+    public int menuPrincipal() {
 
         int opcion;
 
@@ -75,7 +75,7 @@ public class GestorPrestamos {
                     System.out.println("---------------------------------------");
                     System.out.println("Saliendo...");
                     System.out.println("---------------------------------------");
-                    break;
+                    return 6;
 
                 default:
                     System.out.println("---------------------------------------");
@@ -84,9 +84,10 @@ public class GestorPrestamos {
             }
 
         } while (opcion != 6);
+        return 6;
     }
 
-    public void menuIngenieria() {
+    public int menuIngenieria() {
 
         int opc;
 
@@ -124,7 +125,7 @@ public class GestorPrestamos {
                     System.out.println("---------------------------------------");
                     System.out.println("Volviendo...");
                     System.out.println("---------------------------------------");
-                    break;
+                    return 5;
 
                 default:
                     System.out.println("---------------------------------------");
@@ -133,9 +134,10 @@ public class GestorPrestamos {
             }
 
         } while (opc != 5);
+        return 5;
     }
 
-    public void menuDiseno() {
+    public int menuDiseno() {
 
         int opc;
 
@@ -173,7 +175,7 @@ public class GestorPrestamos {
                     System.out.println("---------------------------------------");
                     System.out.println("Volviendo...");
                     System.out.println("---------------------------------------");
-                    break;
+                    return 5;
 
                 default:
                     System.out.println("---------------------------------------");
@@ -182,10 +184,11 @@ public class GestorPrestamos {
             }
 
         } while (opc != 5);
+        return 5;
     }
 
     // Métodos Ingeniería.
-    public void registrarIngenieria() {
+    public boolean registrarIngenieria() {
 
         System.out.println("\n===== REGISTRO INGENIERIA =====");
 
@@ -198,7 +201,7 @@ public class GestorPrestamos {
                 System.out.println("---------------------------------------");
                 System.out.println("Ya existe un estudiante con esa cédula.");
                 System.out.println("---------------------------------------");
-                return;
+                return false;
             }
         }
 
@@ -235,14 +238,15 @@ public class GestorPrestamos {
         System.out.println("---------------------------------------");
         System.out.println("Prestamo registrado correctamente.");
         System.out.println("---------------------------------------");
+        return true;
     }
 
-    public void modificarIngenieria() {
+    public boolean modificarIngenieria() {
 
         if (vectorIngenieria.isEmpty()) {
 
             System.out.println("No hay registros.");
-            return;
+            return false;
         }
 
         System.out.print("Ingrese la cedula: ");
@@ -272,21 +276,22 @@ public class GestorPrestamos {
                 System.out.println("Registro actualizado.");
                 System.out.println("---------------------------------------");
 
-                return;
+                return true;
             }
         }
 
         System.out.println("---------------------------------------");
         System.out.println("No se encontró el estudiante.");
         System.out.println("---------------------------------------");
+        return false;
     }
 
-    public void devolverIngenieria() {
+    public boolean devolverIngenieria() {
 
         if (vectorIngenieria.isEmpty()) {
 
             System.out.println("No hay registros.");
-            return;
+            return false;
         }
 
         System.out.print("Ingrese la cedula: ");
@@ -307,21 +312,22 @@ public class GestorPrestamos {
                 System.out.println("Equipo devuelto correctamente.");
                 System.out.println("---------------------------------------");
 
-                return;
+                return true;
             }
         }
 
         System.out.println("---------------------------------------");
         System.out.println("No se encontró el estudiante.");
         System.out.println("---------------------------------------");
+        return false;
     }
 
-    public void buscarIngenieria() {
+    public boolean buscarIngenieria() {
 
         if (vectorIngenieria.isEmpty()) {
 
             System.out.println("No hay registros.");
-            return;
+            return false;
         }
 
         System.out.print("Ingrese la cedula: ");
@@ -337,18 +343,19 @@ public class GestorPrestamos {
                 System.out.println(e);
                 System.out.println("---------------------------------------");
 
-                return;
+                return true;
             }
         }
 
         System.out.println("---------------------------------------");
         System.out.println("No se encontró el estudiante.");
         System.out.println("---------------------------------------");
+        return false;
 
     }
 
     // Métodos diseño.
-    public void registrarDiseno() {
+    public boolean registrarDiseno() {
 
         System.out.println("\n===== REGISTRO DISEÑO =====");
 
@@ -362,7 +369,7 @@ public class GestorPrestamos {
                 System.out.println("---------------------------------------");
                 System.out.println("Ya existe un estudiante con esa cédula.");
                 System.out.println("---------------------------------------");
-                return;
+                return false;
             }
         }
 
@@ -400,14 +407,15 @@ public class GestorPrestamos {
         System.out.println("---------------------------------------");
         System.out.println("Prestamo registrado correctamente.");
         System.out.println("---------------------------------------");
+        return true;
     }
 
-    public void modificarDiseno() {
+    public boolean modificarDiseno() {
 
         if (vectorDiseno.isEmpty()) {
 
             System.out.println("No hay registros.");
-            return;
+            return false;
         }
 
         System.out.print("Ingrese la cedula: ");
@@ -437,21 +445,22 @@ public class GestorPrestamos {
                 System.out.println("Registro actualizado.");
                 System.out.println("---------------------------------------");
 
-                return;
+                return true;
             }
         }
 
         System.out.println("---------------------------------------");
         System.out.println("No se encontró el estudiante.");
         System.out.println("---------------------------------------");
+        return false;
     }
 
-    public void devolverDiseno() {
+    public boolean devolverDiseno() {
 
         if (vectorDiseno.isEmpty()) {
 
             System.out.println("No hay registros.");
-            return;
+            return false;
         }
 
         System.out.print("Ingrese la cedula: ");
@@ -472,13 +481,14 @@ public class GestorPrestamos {
                 System.out.println("Equipo devuelto correctamente.");
                 System.out.println("---------------------------------------");
 
-                return;
+                return true;
             }
         }
 
         System.out.println("---------------------------------------");
         System.out.println("No se encontró el estudiante.");
         System.out.println("---------------------------------------");
+        return false;
     }
 
     public void buscarDiseno() {
