@@ -206,10 +206,10 @@ public class GestorPrestamos {
         }
 
         System.out.print("Nombre: ");
-        String nombre = val.validarTexto(sc);
+        String nombre = val.validarNombreyApellido(sc);
 
         System.out.print("Apellido: ");
-        String apellido = val.validarTexto(sc);
+        String apellido = val.validarNombreyApellido(sc);
 
         System.out.print("Telefono: ");
         String telefono = val.validarTelefono(sc);
@@ -258,10 +258,10 @@ public class GestorPrestamos {
             if (e.getCedula().equals(cedula)) {
 
                 System.out.print("Nuevo nombre: ");
-                e.setNombre(val.validarTexto(sc));
+                e.setNombre(val.validarNombreyApellido(sc));
 
                 System.out.print("Nuevo apellido: ");
-                e.setApellido(val.validarTexto(sc));
+                e.setApellido(val.validarNombreyApellido(sc));
 
                 System.out.print("Nuevo telefono: ");
                 e.setTelefono(val.validarTelefono(sc));
@@ -374,10 +374,10 @@ public class GestorPrestamos {
         }
 
         System.out.print("Nombre: ");
-        String nombre = val.validarTexto(sc);
+        String nombre = val.validarNombreyApellido(sc);
 
         System.out.print("Apellido: ");
-        String apellido = val.validarTexto(sc);
+        String apellido = val.validarNombreyApellido(sc);
 
         System.out.print("Telefono: ");
         String telefono = val.validarTelefono(sc);
@@ -427,10 +427,10 @@ public class GestorPrestamos {
             if (e.getCedula().equals(cedula)) {
 
                 System.out.print("Nuevo nombre: ");
-                e.setNombre(val.validarTexto(sc));
+                e.setNombre(val.validarNombreyApellido(sc));
 
                 System.out.print("Nuevo apellido: ");
-                e.setApellido(val.validarTexto(sc));
+                e.setApellido(val.validarNombreyApellido(sc));
 
                 System.out.print("Nuevo telefono: ");
                 e.setTelefono(val.validarTelefono(sc));

@@ -14,6 +14,20 @@ public class Validaciones {
 
         return num;
     }
+    public String validarNombreyApellido(Scanner sc) {
+
+        String txt = sc.nextLine().trim();
+
+        if (!txt.matches("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ¥¤ ]{1,33}")) {
+
+            System.out.println("No se permiten caracteres especiales y máximo 33 caracteres. Intente nuevamente:");
+
+            return validarNombreyApellido(sc);
+        }
+
+        return txt;
+
+    }
 
     public String validarTexto(Scanner sc) {
 
@@ -77,11 +91,12 @@ public class Validaciones {
 
         String cedula = sc.nextLine().trim();
 
-        if (!cedula.matches("\\d+")) {
+        if (!cedula.matches("\\d{7,10}")) {
 
-            System.out.println("La cédula solo puede contener números. Intente nuevamente:");
-
+            System.out.println("La cédula debe contener entre 7 y 10 números. Intente nuevamente:");
+            System.out.println("Cedula: ");
             return validarCedula(sc);
+            
         }
 
         return cedula;
