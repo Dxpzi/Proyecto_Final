@@ -210,6 +210,17 @@ public class GestorPrestamos {
             }
         }
 
+        for (EstudianteDiseno d : vectorDiseno) {
+
+            if (d.getCedula().equals(cedula)) {
+
+                System.out.println("---------------------------------------");
+                System.out.println("El estudiante ya tiene un equipo asignado.");
+                System.out.println("---------------------------------------");
+                return false;
+            }
+        }
+
         System.out.print("Nombre: ");
         String nombre = val.validarTexto(sc);
 
@@ -302,40 +313,85 @@ public class GestorPrestamos {
             return false;
         }
 
-        System.out.print("Ingrese la cedula: ");
+        System.out.println("Buscar por:");
+        System.out.println("1. Cedula");
+        System.out.println("2. Serial");
+        int opcion = val.validarEntero(sc);
 
-        String cedula = val.validarCedula(sc);
+        if (opcion == 1) {
 
-        for (EstudianteIngenieria e : vectorIngenieria) {
+            System.out.print("Ingrese la cedula: ");
+            String cedula = val.validarCedula(sc);
 
-            if (e.getCedula().equals(cedula)) {
+            for (EstudianteIngenieria e : vectorIngenieria) {
 
-                System.out.print("Nuevo nombre: ");
-                e.setNombre(val.validarTexto(sc));
+                if (e.getCedula().equals(cedula)) {
 
-                System.out.print("Nuevo apellido: ");
-                e.setApellido(val.validarTexto(sc));
+                    System.out.print("Nuevo nombre: ");
+                    e.setNombre(val.validarTexto(sc));
 
-                System.out.print("Nuevo telefono: ");
-                e.setTelefono(val.validarTelefono(sc));
+                    System.out.print("Nuevo apellido: ");
+                    e.setApellido(val.validarTexto(sc));
 
-                System.out.print("Nuevo semestre: ");
-                e.setNumeroSemestre(val.validarSemestre(sc));
+                    System.out.print("Nuevo telefono: ");
+                    e.setTelefono(val.validarTelefono(sc));
 
-                System.out.print("Nuevo promedio: ");
-                e.setPromedioAcumulado(val.validarPromedio(sc));
+                    System.out.print("Nuevo semestre: ");
+                    e.setNumeroSemestre(val.validarSemestre(sc));
 
-                System.out.println("---------------------------------------");
-                System.out.println("Registro actualizado.");
-                System.out.println("---------------------------------------");
+                    System.out.print("Nuevo promedio: ");
+                    e.setPromedioAcumulado(val.validarPromedio(sc));
 
-                return true;
+                    System.out.println("---------------------------------------");
+                    System.out.println("Registro actualizado.");
+                    System.out.println("---------------------------------------");
+
+                    return true;
+                }
             }
+
+        } else if (opcion == 2) {
+
+            System.out.print("Ingrese el serial: ");
+            String serial = val.validarSerial(sc);
+
+            for (EstudianteIngenieria e : vectorIngenieria) {
+
+                if (e.getSerialEquipo().equals(serial)) {
+
+                    System.out.print("Nuevo nombre: ");
+                    e.setNombre(val.validarTexto(sc));
+
+                    System.out.print("Nuevo apellido: ");
+                    e.setApellido(val.validarTexto(sc));
+
+                    System.out.print("Nuevo telefono: ");
+                    e.setTelefono(val.validarTelefono(sc));
+
+                    System.out.print("Nuevo semestre: ");
+                    e.setNumeroSemestre(val.validarSemestre(sc));
+
+                    System.out.print("Nuevo promedio: ");
+                    e.setPromedioAcumulado(val.validarPromedio(sc));
+
+                    System.out.println("---------------------------------------");
+                    System.out.println("Registro actualizado.");
+                    System.out.println("---------------------------------------");
+
+                    return true;
+                }
+            }
+
+        } else {
+
+            System.out.println("Opción inválida.");
+            return false;
         }
 
         System.out.println("---------------------------------------");
         System.out.println("No se encontró el estudiante.");
         System.out.println("---------------------------------------");
+
         return false;
     }
 
@@ -358,7 +414,7 @@ public class GestorPrestamos {
                 pilaDevoluciones.push(cedula);
 
                 colaEspera.remove(cedula);
-                
+
                 String serial = vectorIngenieria.get(i).getSerialEquipo();
 
                 for (int j = 0; j < vectorPortatil.size(); j++) {
@@ -393,28 +449,58 @@ public class GestorPrestamos {
             return false;
         }
 
-        System.out.print("Ingrese la cedula: ");
+        System.out.println("Buscar por:");
+        System.out.println("1. Cedula");
+        System.out.println("2. Serial");
+        int opcion = val.validarEntero(sc);
 
-        String cedula = val.validarCedula(sc);
+        if (opcion == 1) {
 
-        for (EstudianteIngenieria e : vectorIngenieria) {
+            System.out.print("Ingrese la cedula: ");
+            String cedula = val.validarCedula(sc);
 
-            if (e.getCedula().equals(cedula)) {
+            for (EstudianteIngenieria e : vectorIngenieria) {
 
-                System.out.println("---------------------------------------");
-                System.out.println("\nRegistro encontrado:");
-                System.out.println(e);
-                System.out.println("---------------------------------------");
+                if (e.getCedula().equals(cedula)) {
 
-                return true;
+                    System.out.println("---------------------------------------");
+                    System.out.println("Registro encontrado:");
+                    System.out.println(e);
+                    System.out.println("---------------------------------------");
+
+                    return true;
+                }
             }
+
+        } else if (opcion == 2) {
+
+            System.out.print("Ingrese el serial: ");
+            String serial = val.validarSerial(sc);
+
+            for (EstudianteIngenieria e : vectorIngenieria) {
+
+                if (e.getSerialEquipo().equals(serial)) {
+
+                    System.out.println("---------------------------------------");
+                    System.out.println("Registro encontrado:");
+                    System.out.println(e);
+                    System.out.println("---------------------------------------");
+
+                    return true;
+                }
+            }
+
+        } else {
+
+            System.out.println("Opción inválida.");
+            return false;
         }
 
         System.out.println("---------------------------------------");
-        System.out.println("No se encontró el estudiante.");
+        System.out.println("No se encontró el estudiante/equipo.");
         System.out.println("---------------------------------------");
-        return false;
 
+        return false;
     }
 
     // Métodos diseño.
@@ -431,6 +517,17 @@ public class GestorPrestamos {
 
                 System.out.println("---------------------------------------");
                 System.out.println("Ya existe un estudiante con esa cédula.");
+                System.out.println("---------------------------------------");
+                return false;
+            }
+        }
+
+        for (EstudianteIngenieria i : vectorIngenieria) {
+
+            if (i.getCedula().equals(cedula)) {
+
+                System.out.println("---------------------------------------");
+                System.out.println("El estudiante ya tiene un equipo asignado.");
                 System.out.println("---------------------------------------");
                 return false;
             }
@@ -530,40 +627,85 @@ public class GestorPrestamos {
             return false;
         }
 
-        System.out.print("Ingrese la cedula: ");
+        System.out.println("Buscar por:");
+        System.out.println("1. Cedula");
+        System.out.println("2. Serial");
+        int opcion = val.validarEntero(sc);
 
-        String cedula = val.validarCedula(sc);
+        if (opcion == 1) {
 
-        for (EstudianteDiseno e : vectorDiseno) {
+            System.out.print("Ingrese la cedula: ");
+            String cedula = val.validarCedula(sc);
 
-            if (e.getCedula().equals(cedula)) {
+            for (EstudianteDiseno e : vectorDiseno) {
 
-                System.out.print("Nuevo nombre: ");
-                e.setNombre(val.validarTexto(sc));
+                if (e.getCedula().equals(cedula)) {
 
-                System.out.print("Nuevo apellido: ");
-                e.setApellido(val.validarTexto(sc));
+                    System.out.print("Nuevo nombre: ");
+                    e.setNombre(val.validarTexto(sc));
 
-                System.out.print("Nuevo telefono: ");
-                e.setTelefono(val.validarTelefono(sc));
+                    System.out.print("Nuevo apellido: ");
+                    e.setApellido(val.validarTexto(sc));
 
-                System.out.print("Nueva modalidad (Virtual/Presencial): ");
-                e.setModalidadEstudio(val.validarModalidad(sc));
+                    System.out.print("Nuevo telefono: ");
+                    e.setTelefono(val.validarTelefono(sc));
 
-                System.out.print("Nueva cantidad de asignaturas: ");
-                e.setCantidadAsignaturas(val.validarEntero(sc));
+                    System.out.print("Nueva modalidad: ");
+                    e.setModalidadEstudio(val.validarModalidad(sc));
 
-                System.out.println("---------------------------------------");
-                System.out.println("Registro actualizado.");
-                System.out.println("---------------------------------------");
+                    System.out.print("Nueva cantidad de asignaturas: ");
+                    e.setCantidadAsignaturas(val.validarEntero(sc));
 
-                return true;
+                    System.out.println("---------------------------------------");
+                    System.out.println("Registro actualizado.");
+                    System.out.println("---------------------------------------");
+
+                    return true;
+                }
             }
+
+        } else if (opcion == 2) {
+
+            System.out.print("Ingrese el serial: ");
+            String serial = val.validarSerial(sc);
+
+            for (EstudianteDiseno e : vectorDiseno) {
+
+                if (e.getSerialEquipo().equals(serial)) {
+
+                    System.out.print("Nuevo nombre: ");
+                    e.setNombre(val.validarTexto(sc));
+
+                    System.out.print("Nuevo apellido: ");
+                    e.setApellido(val.validarTexto(sc));
+
+                    System.out.print("Nuevo telefono: ");
+                    e.setTelefono(val.validarTelefono(sc));
+
+                    System.out.print("Nueva modalidad: ");
+                    e.setModalidadEstudio(val.validarModalidad(sc));
+
+                    System.out.print("Nueva cantidad de asignaturas: ");
+                    e.setCantidadAsignaturas(val.validarEntero(sc));
+
+                    System.out.println("---------------------------------------");
+                    System.out.println("Registro actualizado.");
+                    System.out.println("---------------------------------------");
+
+                    return true;
+                }
+            }
+
+        } else {
+
+            System.out.println("Opción inválida.");
+            return false;
         }
 
         System.out.println("---------------------------------------");
         System.out.println("No se encontró el estudiante.");
         System.out.println("---------------------------------------");
+
         return false;
     }
 
@@ -586,6 +728,17 @@ public class GestorPrestamos {
                 pilaDevoluciones.push(cedula);
 
                 colaEspera.remove(cedula);
+
+                String serial = vectorDiseno.get(i).getSerialEquipo();
+
+                for (int j = 0; j < vectorTableta.size(); j++) {
+
+                    if (vectorTableta.get(j).getSerial().equals(serial)) {
+
+                        vectorTableta.remove(j);
+                        break;
+                    }
+                }
 
                 vectorDiseno.remove(i);
 
@@ -611,26 +764,57 @@ public class GestorPrestamos {
             return false;
         }
 
-        System.out.print("Ingrese la cedula: ");
+        System.out.println("Buscar por:");
+        System.out.println("1. Cedula");
+        System.out.println("2. Serial");
+        int opcion = val.validarEntero(sc);
 
-        String cedula = val.validarCedula(sc);
+        if (opcion == 1) {
 
-        for (EstudianteDiseno e : vectorDiseno) {
+            System.out.print("Ingrese la cedula: ");
+            String cedula = val.validarCedula(sc);
 
-            if (e.getCedula().equals(cedula)) {
+            for (EstudianteDiseno e : vectorDiseno) {
 
-                System.out.println("---------------------------------------");
-                System.out.println("Registro encontrado:");
-                System.out.println(e);
-                System.out.println("---------------------------------------");
+                if (e.getCedula().equals(cedula)) {
 
-                return true;
+                    System.out.println("---------------------------------------");
+                    System.out.println("Registro encontrado:");
+                    System.out.println(e);
+                    System.out.println("---------------------------------------");
+
+                    return true;
+                }
             }
+
+        } else if (opcion == 2) {
+
+            System.out.print("Ingrese el serial: ");
+            String serial = val.validarSerial(sc);
+
+            for (EstudianteDiseno e : vectorDiseno) {
+
+                if (e.getSerialEquipo().equals(serial)) {
+
+                    System.out.println("---------------------------------------");
+                    System.out.println("Registro encontrado:");
+                    System.out.println(e);
+                    System.out.println("---------------------------------------");
+
+                    return true;
+                }
+            }
+
+        } else {
+
+            System.out.println("Opción inválida.");
+            return false;
         }
 
         System.out.println("---------------------------------------");
-        System.out.println("No se encontró el estudiante.");
+        System.out.println("No se encontró el estudiante/equipo.");
         System.out.println("---------------------------------------");
+
         return false;
     }
 
@@ -705,6 +889,30 @@ public class GestorPrestamos {
         for (EstudianteDiseno d : vectorDiseno) {
 
             System.out.println(d);
+        }
+
+        System.out.println("\n===== INVENTARIO PORTÁTILES =====");
+
+        if (vectorPortatil.isEmpty()) {
+
+            System.out.println("No hay registros.");
+        }
+
+        for (ComputadorPortatil p : vectorPortatil) {
+
+            System.out.println(p);
+        }
+
+        System.out.println("\n===== INVENTARIO TABLETAS =====");
+
+        if (vectorTableta.isEmpty()) {
+
+            System.out.println("No hay registros.");
+        }
+
+        for (TabletaGrafica t : vectorTableta) {
+
+            System.out.println(t);
         }
     }
 
