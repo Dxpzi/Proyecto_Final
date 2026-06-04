@@ -13,6 +13,13 @@ public class GestorPrestamos {
 
     private Validaciones val;
 
+    public ArrayList<EstudianteIngenieria> getIngenieria() {
+        return vectorIngenieria;
+    }
+
+    public ArrayList<EstudianteDiseno> getDiseno() {
+        return vectorDiseno;
+    }
     // PILA
     private Stack<String> pilaDevoluciones;
 
