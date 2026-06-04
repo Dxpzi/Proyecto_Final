@@ -282,9 +282,8 @@ public class GestorPrestamos {
     }
 
     public void devolverIngenieria() {
-        
-        if (vectorIngenieria.isEmpty()) {
 
+        if (vectorIngenieria.isEmpty()) {
 
             System.out.println("No hay registros.");
             return;
@@ -299,6 +298,8 @@ public class GestorPrestamos {
             if (vectorIngenieria.get(i).getCedula().equals(cedula)) {
 
                 pilaDevoluciones.push(cedula);
+
+                colaEspera.remove(cedula);
 
                 vectorIngenieria.remove(i);
 
@@ -349,46 +350,165 @@ public class GestorPrestamos {
     // Métodos diseño.
     public void registrarDiseno() {
 
-        System.out.println("Registro Diseño");
+        System.out.println("\n===== REGISTRO DISEÑO =====");
 
-        System.out.print("Ingrese cédula: ");
-        String cedula = sc.nextLine();
+        System.out.print("Cedula: ");
+        String cedula = val.validarCedula(sc);
+
+        for (EstudianteDiseno e : vectorDiseno) {
+
+            if (e.getCedula().equals(cedula)) {
+
+                System.out.println("---------------------------------------");
+                System.out.println("Ya existe un estudiante con esa cédula.");
+                System.out.println("---------------------------------------");
+                return;
+            }
+        }
+
+        System.out.print("Nombre: ");
+        String nombre = val.validarTexto(sc);
+
+        System.out.print("Apellido: ");
+        String apellido = val.validarTexto(sc);
+
+        System.out.print("Telefono: ");
+        String telefono = val.validarTelefono(sc);
+
+        System.out.print("Modalidad (Virtual/Presencial): ");
+        String modalidad = val.validarModalidad(sc);
+
+        System.out.print("Cantidad de asignaturas: ");
+        int asignaturas = val.validarEntero(sc);
+
+        System.out.print("Serial del equipo: ");
+        String serial = val.validarSerial(sc);
+
+        EstudianteDiseno estudiante = new EstudianteDiseno(
+                cedula,
+                nombre,
+                apellido,
+                telefono,
+                modalidad,
+                asignaturas,
+                serial);
+
+        vectorDiseno.add(estudiante);
 
         colaEspera.offer(cedula);
 
-        System.out.println("Estudiante agregado a la cola.");
+        System.out.println("---------------------------------------");
+        System.out.println("Prestamo registrado correctamente.");
+        System.out.println("---------------------------------------");
     }
 
     public void modificarDiseno() {
 
         if (vectorDiseno.isEmpty()) {
-            System.out.println("No hay registros de diseño para modificar.");
+
+            System.out.println("No hay registros.");
             return;
         }
 
-        System.out.println("Modificar Diseño");
+        System.out.print("Ingrese la cedula: ");
+
+        String cedula = val.validarCedula(sc);
+
+        for (EstudianteDiseno e : vectorDiseno) {
+
+            if (e.getCedula().equals(cedula)) {
+
+                System.out.print("Nuevo nombre: ");
+                e.setNombre(val.validarTexto(sc));
+
+                System.out.print("Nuevo apellido: ");
+                e.setApellido(val.validarTexto(sc));
+
+                System.out.print("Nuevo telefono: ");
+                e.setTelefono(val.validarTelefono(sc));
+
+                System.out.print("Nueva modalidad (Virtual/Presencial): ");
+                e.setModalidadEstudio(val.validarModalidad(sc));
+
+                System.out.print("Nueva cantidad de asignaturas: ");
+                e.setCantidadAsignaturas(val.validarEntero(sc));
+
+                System.out.println("---------------------------------------");
+                System.out.println("Registro actualizado.");
+                System.out.println("---------------------------------------");
+
+                return;
+            }
+        }
+
+        System.out.println("---------------------------------------");
+        System.out.println("No se encontró el estudiante.");
+        System.out.println("---------------------------------------");
     }
 
     public void devolverDiseno() {
 
-        System.out.println("Devolver Diseño");
+        if (vectorDiseno.isEmpty()) {
 
-        System.out.print("Ingrese cédula: ");
-        String cedula = sc.nextLine();
+            System.out.println("No hay registros.");
+            return;
+        }
 
-        pilaDevoluciones.push(cedula);
+        System.out.print("Ingrese la cedula: ");
 
-        System.out.println("Devolución registrada en pila.");
+        String cedula = val.validarCedula(sc);
+
+        for (int i = 0; i < vectorDiseno.size(); i++) {
+
+            if (vectorDiseno.get(i).getCedula().equals(cedula)) {
+
+                pilaDevoluciones.push(cedula);
+
+                colaEspera.remove(cedula);
+
+                vectorDiseno.remove(i);
+
+                System.out.println("---------------------------------------");
+                System.out.println("Equipo devuelto correctamente.");
+                System.out.println("---------------------------------------");
+
+                return;
+            }
+        }
+
+        System.out.println("---------------------------------------");
+        System.out.println("No se encontró el estudiante.");
+        System.out.println("---------------------------------------");
     }
 
     public void buscarDiseno() {
 
         if (vectorDiseno.isEmpty()) {
-            System.out.println("No hay registros de diseño para buscar.");
+
+            System.out.println("No hay registros.");
             return;
         }
 
-        System.out.println("Buscar Diseño");
+        System.out.print("Ingrese la cedula: ");
+
+        String cedula = val.validarCedula(sc);
+
+        for (EstudianteDiseno e : vectorDiseno) {
+
+            if (e.getCedula().equals(cedula)) {
+
+                System.out.println("---------------------------------------");
+                System.out.println("Registro encontrado:");
+                System.out.println(e);
+                System.out.println("---------------------------------------");
+
+                return;
+            }
+        }
+
+        System.out.println("---------------------------------------");
+        System.out.println("No se encontró el estudiante.");
+        System.out.println("---------------------------------------");
     }
 
     // Inventario.

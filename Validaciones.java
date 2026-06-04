@@ -135,4 +135,20 @@ public class Validaciones {
         }
     }
 
+    public String validarModalidad(Scanner sc) {
+
+        while (true) {
+
+            String modalidad = sc.nextLine().trim();
+
+            if (modalidad.equalsIgnoreCase("Virtual")
+                    || modalidad.equalsIgnoreCase("Presencial")) {
+
+                return modalidad;
+            }
+
+            System.out.print("Ingrese Virtual o Presencial: ");
+        }
+    }
+
 }
