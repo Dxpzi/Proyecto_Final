@@ -15,6 +15,7 @@ public class SubMenus {
         System.out.print("Opción: ");
 
         int op = sc.nextInt();
+        sc.nextLine();
 
         switch (op) {
             case 1:
@@ -40,6 +41,7 @@ public class SubMenus {
         System.out.print("Opción: ");
 
         int op = sc.nextInt();
+        sc.nextLine();
 
         switch (op) {
             case 1:
@@ -62,6 +64,7 @@ public class SubMenus {
         System.out.print("Opción: ");
 
         int op = sc.nextInt();
+        sc.nextLine();
 
         switch (op) {
             case 1:

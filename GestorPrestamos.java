@@ -236,6 +236,35 @@ public class GestorPrestamos {
         System.out.print("Promedio acumulado: ");
         double promedio = val.validarPromedio(sc);
 
+        int tipoEquipo;
+        do {
+            System.out.println("Seleccione tipo de equipo:");
+            System.out.println("1. Computador");
+            System.out.println("2. Tableta");
+            System.out.print("Opción: ");
+            tipoEquipo = val.validarEntero(sc);
+            if (tipoEquipo != 1 && tipoEquipo != 2) {
+                System.out.println("---------------------------------------");
+                System.out.println("Opción inválida.");
+                System.out.println("---------------------------------------");
+            }
+        } while (tipoEquipo != 1 && tipoEquipo != 2);
+
+        String sistemaOperativo = "";
+        String procesador = "";
+        String almacenamiento = "";
+        double peso = 0.0;
+
+        if (tipoEquipo == 1) {
+            sistemaOperativo = SubMenus.SeleccionarSO();
+            procesador = SubMenus.SeleccionarProcesador();
+        } else {
+            almacenamiento = SubMenus.SeleccionarAlmacenamiento();
+            System.out.print("Peso: ");
+            peso = sc.nextDouble();
+            sc.nextLine();
+        }
+
         System.out.print("Serial del equipo: ");
         String serial = val.validarSerial(sc);
 
@@ -248,12 +277,6 @@ public class GestorPrestamos {
         System.out.print("Precio: ");
         double precio = sc.nextDouble();
         sc.nextLine();
-
-        System.out.print("Sistema Operativo: ");
-        String sistemaOperativo = sc.nextLine();
-
-        System.out.print("Procesador: ");
-        String procesador = sc.nextLine();
 
         for (EstudianteIngenieria e : vectorIngenieria) {
 
@@ -287,16 +310,27 @@ public class GestorPrestamos {
                 promedio,
                 serial);
 
-        ComputadorPortatil portatil = new ComputadorPortatil(
-                serial,
-                marca,
-                tamano,
-                precio,
-                sistemaOperativo,
-                procesador);
-
         vectorIngenieria.add(estudiante);
-        vectorPortatil.add(portatil);
+
+        if (sistemaOperativo.isEmpty() && procesador.isEmpty()) {
+            TabletaGrafica tableta = new TabletaGrafica(
+                    serial,
+                    marca,
+                    tamano,
+                    precio,
+                    almacenamiento,
+                    peso);
+            vectorTableta.add(tableta);
+        } else {
+            ComputadorPortatil portatil = new ComputadorPortatil(
+                    serial,
+                    marca,
+                    tamano,
+                    precio,
+                    sistemaOperativo,
+                    procesador);
+            vectorPortatil.add(portatil);
+        }
 
         colaEspera.offer(cedula);
         System.out.println("---------------------------------------");
