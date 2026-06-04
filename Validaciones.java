@@ -15,26 +15,13 @@ public class Validaciones {
         return num;
     }
 
-    public String validarNombreyApellido(Scanner sc) {
-
-        String txt = sc.nextLine().trim();
-
-        if (!txt.matches("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ¥¤ ]{1,33}")) {
-
-            System.out.println("No se permiten caracteres especiales y máximo 33 caracteres. Intente nuevamente:");
-
-            return validarNombreyApellido(sc);
-        }
-
-        return txt;
-
-    }
+    
 
     public String validarTexto(Scanner sc) {
 
         String txt = sc.nextLine().trim();
 
-        if (!txt.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ¥¤ ]+")) {
+        if (!txt.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ¥¤ ]{1,33}")) {
 
             System.out.println("No se permiten números ni caracteres especiales. Intente nuevamente:");
 
