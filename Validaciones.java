@@ -14,6 +14,7 @@ public class Validaciones {
 
         return num;
     }
+
     public String validarNombreyApellido(Scanner sc) {
 
         String txt = sc.nextLine().trim();
@@ -95,8 +96,8 @@ public class Validaciones {
 
             System.out.println("La cédula debe contener entre 7 y 10 números. Intente nuevamente:");
             System.out.println("Cedula: ");
+
             return validarCedula(sc);
-            
         }
 
         return cedula;
@@ -104,66 +105,57 @@ public class Validaciones {
 
     public String validarTelefono(Scanner sc) {
 
-        String telefono;
+        String telefono = sc.nextLine().trim();
 
-        do {
-            telefono = sc.nextLine();
+        if (!telefono.matches("\\d{10}")) {
 
-            if (!telefono.matches("\\d{10}")) {
-                System.out.print("Ingrese un teléfono válido: ");
-            }
+            System.out.print("Ingrese un teléfono válido: ");
 
-        } while (!telefono.matches("\\d{10}"));
+            return validarTelefono(sc);
+        }
 
         return telefono;
     }
 
     public int validarSemestre(Scanner sc) {
 
-        int semestre;
+        int semestre = validarEntero(sc);
 
-        while (true) {
-
-            semestre = validarEntero(sc);
-
-            if (semestre >= 1 && semestre <= 10) {
-                return semestre;
-            }
-
-            System.out.print("Ingrese un semestre válido (1-10): ");
+        if (semestre >= 1 && semestre <= 10) {
+            return semestre;
         }
+
+        System.out.print("Ingrese un semestre válido (1-10): ");
+
+        return validarSemestre(sc);
     }
 
     public double validarPromedio(Scanner sc) {
 
-        double promedio;
+        double promedio = validarDouble(sc);
 
-        while (true) {
-
-            promedio = validarDouble(sc);
-
-            if (promedio >= 0 && promedio <= 5) {
-                return promedio;
-            }
-
-            System.out.print("Ingrese un promedio válido (0 - 5): ");
+        if (promedio >= 0 && promedio <= 5) {
+            return promedio;
         }
+
+        System.out.print("Ingrese un promedio válido (0 - 5): ");
+
+        return validarPromedio(sc);
     }
 
     public String validarModalidad(Scanner sc) {
 
-        while (true) {
+        String modalidad = sc.nextLine().trim();
 
-            String modalidad = sc.nextLine().trim();
+        if (modalidad.equalsIgnoreCase("Virtual")
+                || modalidad.equalsIgnoreCase("Presencial")) {
 
-            if (modalidad.equalsIgnoreCase("Virtual")
-                    || modalidad.equalsIgnoreCase("Presencial")) {
-
-                return modalidad;
-            }
-
-            System.out.print("Ingrese Virtual o Presencial: ");
+            return modalidad;
         }
+
+        System.out.print("Ingrese Virtual o Presencial: ");
+
+        return validarModalidad(sc);
     }
 
 }

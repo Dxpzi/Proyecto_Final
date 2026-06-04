@@ -223,6 +223,29 @@ public class GestorPrestamos {
         System.out.print("Serial del equipo: ");
         String serial = val.validarSerial(sc);
 
+        for (EstudianteIngenieria e : vectorIngenieria) {
+
+            if (e.getSerialEquipo().equals(serial)) {
+
+                System.out.println("---------------------------------------");
+                System.out.println("Ya existe un equipo con ese serial.");
+                System.out.println("---------------------------------------");
+
+                return false;
+            }
+        }
+        // Busca también en Diseño
+        for (EstudianteDiseno d : vectorDiseno) {
+
+            if (d.getSerialEquipo().equals(serial)) {
+
+                System.out.println("---------------------------------------");
+                System.out.println("Ya existe un equipo con ese serial.");
+                System.out.println("---------------------------------------");
+                return false;
+            }
+        }
+
         EstudianteIngenieria estudiante = new EstudianteIngenieria(
                 cedula,
                 nombre,
@@ -391,6 +414,29 @@ public class GestorPrestamos {
         System.out.print("Serial del equipo: ");
         String serial = val.validarSerial(sc);
 
+        for (EstudianteDiseno e : vectorDiseno) {
+
+            if (e.getSerialEquipo().equals(serial)) {
+
+                System.out.println("---------------------------------------");
+                System.out.println("Ya existe un equipo con ese serial.");
+                System.out.println("---------------------------------------");
+                return false;
+            }
+        }
+
+        // Busca en Ingeniería
+        for (EstudianteIngenieria i : vectorIngenieria) {
+
+            if (i.getSerialEquipo().equals(serial)) {
+
+                System.out.println("---------------------------------------");
+                System.out.println("Ya existe un equipo con ese serial.");
+                System.out.println("---------------------------------------");
+                return false;
+            }
+        }
+
         EstudianteDiseno estudiante = new EstudianteDiseno(
                 cedula,
                 nombre,
@@ -519,6 +565,52 @@ public class GestorPrestamos {
         System.out.println("---------------------------------------");
         System.out.println("No se encontró el estudiante.");
         System.out.println("---------------------------------------");
+        return false;
+    }
+
+    // Sobrecarga: buscar Ingeniería por serial
+    public boolean buscarIngenieria(String serial) {
+
+        for (EstudianteIngenieria e : vectorIngenieria) {
+
+            if (e.getSerialEquipo().equals(serial)) {
+
+                System.out.println("---------------------------------------");
+                System.out.println("Registro encontrado:");
+                System.out.println(e);
+                System.out.println("---------------------------------------");
+
+                return true;
+            }
+        }
+
+        System.out.println("---------------------------------------");
+        System.out.println("No se encontró el equipo.");
+        System.out.println("---------------------------------------");
+
+        return false;
+    }
+
+    // Sobrecarga: buscar Diseño por serial
+    public boolean buscarDiseno(String serial) {
+
+        for (EstudianteDiseno e : vectorDiseno) {
+
+            if (e.getSerialEquipo().equals(serial)) {
+
+                System.out.println("---------------------------------------");
+                System.out.println("Registro encontrado:");
+                System.out.println(e);
+                System.out.println("---------------------------------------");
+
+                return true;
+            }
+        }
+
+        System.out.println("---------------------------------------");
+        System.out.println("No se encontró el equipo.");
+        System.out.println("---------------------------------------");
+
         return false;
     }
 
