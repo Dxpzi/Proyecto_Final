@@ -8,6 +8,7 @@ public class GestorPrestamos {
 
     private ArrayList<EstudianteIngenieria> vectorIngenieria;
     private ArrayList<EstudianteDiseno> vectorDiseno;
+    private Validaciones val;
 
     // PILA
     private Stack<String> pilaDevoluciones;
@@ -27,6 +28,8 @@ public class GestorPrestamos {
         colaEspera = new LinkedList<>();
 
         sc = new Scanner(System.in);
+
+        val = new Validaciones();
     }
 
     public void menuPrincipal() {
@@ -44,7 +47,7 @@ public class GestorPrestamos {
             System.out.println("6. Salir");
             System.out.print("Seleccione: ");
 
-            opcion = validarEntero();
+            opcion = val.validarEntero(sc);
 
             switch (opcion) {
 
@@ -69,11 +72,15 @@ public class GestorPrestamos {
                     break;
 
                 case 6:
+                    System.out.println("---------------------------------------");
                     System.out.println("Saliendo...");
+                    System.out.println("---------------------------------------");
                     break;
 
                 default:
+                    System.out.println("---------------------------------------");
                     System.out.println("Opción inválida.");
+                    System.out.println("---------------------------------------");
             }
 
         } while (opcion != 6);
@@ -93,7 +100,7 @@ public class GestorPrestamos {
             System.out.println("5. Volver");
             System.out.print("Seleccione: ");
 
-            opc = validarEntero();
+            opc = val.validarEntero(sc);
 
             switch (opc) {
 
@@ -114,11 +121,15 @@ public class GestorPrestamos {
                     break;
 
                 case 5:
+                    System.out.println("---------------------------------------");
                     System.out.println("Volviendo...");
+                    System.out.println("---------------------------------------");
                     break;
 
                 default:
+                    System.out.println("---------------------------------------");
                     System.out.println("Opción inválida.");
+                    System.out.println("---------------------------------------");
             }
 
         } while (opc != 5);
@@ -138,7 +149,7 @@ public class GestorPrestamos {
             System.out.println("5. Volver");
             System.out.print("Seleccione: ");
 
-            opc = validarEntero();
+            opc = val.validarEntero(sc);
 
             switch (opc) {
 
@@ -159,11 +170,15 @@ public class GestorPrestamos {
                     break;
 
                 case 5:
+                    System.out.println("---------------------------------------");
                     System.out.println("Volviendo...");
+                    System.out.println("---------------------------------------");
                     break;
 
                 default:
+                    System.out.println("---------------------------------------");
                     System.out.println("Opción inválida.");
+                    System.out.println("---------------------------------------");
             }
 
         } while (opc != 5);
@@ -172,46 +187,163 @@ public class GestorPrestamos {
     // Métodos Ingeniería.
     public void registrarIngenieria() {
 
-        System.out.println("Registro Ingeniería");
+        System.out.println("\n===== REGISTRO INGENIERIA =====");
 
-        System.out.print("Ingrese cédula: ");
-        String cedula = sc.nextLine();
+        System.out.print("Cedula: ");
+        String cedula = val.validarCedula(sc);
+
+        for (EstudianteIngenieria e : vectorIngenieria) {
+
+            if (e.getCedula().equals(cedula)) {
+                System.out.println("---------------------------------------");
+                System.out.println("Ya existe un estudiante con esa cédula.");
+                System.out.println("---------------------------------------");
+                return;
+            }
+        }
+
+        System.out.print("Nombre: ");
+        String nombre = val.validarTexto(sc);
+
+        System.out.print("Apellido: ");
+        String apellido = val.validarTexto(sc);
+
+        System.out.print("Telefono: ");
+        String telefono = val.validarTelefono(sc);
+
+        System.out.print("Numero de semestre: ");
+        int semestre = val.validarSemestre(sc);
+
+        System.out.print("Promedio acumulado: ");
+        double promedio = val.validarPromedio(sc);
+
+        System.out.print("Serial del equipo: ");
+        String serial = val.validarSerial(sc);
+
+        EstudianteIngenieria estudiante = new EstudianteIngenieria(
+                cedula,
+                nombre,
+                apellido,
+                telefono,
+                semestre,
+                promedio,
+                serial);
+
+        vectorIngenieria.add(estudiante);
 
         colaEspera.offer(cedula);
-
-        System.out.println("Estudiante agregado a la cola.");
+        System.out.println("---------------------------------------");
+        System.out.println("Prestamo registrado correctamente.");
+        System.out.println("---------------------------------------");
     }
 
     public void modificarIngenieria() {
 
         if (vectorIngenieria.isEmpty()) {
-            System.out.println("No hay registros de ingeniería para modificar.");
+
+            System.out.println("No hay registros.");
             return;
         }
 
-        System.out.println("Modificar Ingeniería");
+        System.out.print("Ingrese la cedula: ");
+
+        String cedula = val.validarCedula(sc);
+
+        for (EstudianteIngenieria e : vectorIngenieria) {
+
+            if (e.getCedula().equals(cedula)) {
+
+                System.out.print("Nuevo nombre: ");
+                e.setNombre(val.validarTexto(sc));
+
+                System.out.print("Nuevo apellido: ");
+                e.setApellido(val.validarTexto(sc));
+
+                System.out.print("Nuevo telefono: ");
+                e.setTelefono(val.validarTelefono(sc));
+
+                System.out.print("Nuevo semestre: ");
+                e.setNumeroSemestre(val.validarSemestre(sc));
+
+                System.out.print("Nuevo promedio: ");
+                e.setPromedioAcumulado(val.validarPromedio(sc));
+
+                System.out.println("---------------------------------------");
+                System.out.println("Registro actualizado.");
+                System.out.println("---------------------------------------");
+
+                return;
+            }
+        }
+
+        System.out.println("---------------------------------------");
+        System.out.println("No se encontró el estudiante.");
+        System.out.println("---------------------------------------");
     }
 
     public void devolverIngenieria() {
+        
+        if (vectorIngenieria.isEmpty()) {
 
-        System.out.println("Devolver Ingeniería");
 
-        System.out.print("Ingrese cédula: ");
-        String cedula = sc.nextLine();
+            System.out.println("No hay registros.");
+            return;
+        }
 
-        pilaDevoluciones.push(cedula);
+        System.out.print("Ingrese la cedula: ");
 
-        System.out.println("Devolución registrada en pila.");
+        String cedula = val.validarCedula(sc);
+
+        for (int i = 0; i < vectorIngenieria.size(); i++) {
+
+            if (vectorIngenieria.get(i).getCedula().equals(cedula)) {
+
+                pilaDevoluciones.push(cedula);
+
+                vectorIngenieria.remove(i);
+
+                System.out.println("---------------------------------------");
+                System.out.println("Equipo devuelto correctamente.");
+                System.out.println("---------------------------------------");
+
+                return;
+            }
+        }
+
+        System.out.println("---------------------------------------");
+        System.out.println("No se encontró el estudiante.");
+        System.out.println("---------------------------------------");
     }
 
     public void buscarIngenieria() {
 
         if (vectorIngenieria.isEmpty()) {
-            System.out.println("No hay registros de ingeniería para buscar.");
+
+            System.out.println("No hay registros.");
             return;
         }
 
-        System.out.println("Buscar Ingeniería");
+        System.out.print("Ingrese la cedula: ");
+
+        String cedula = val.validarCedula(sc);
+
+        for (EstudianteIngenieria e : vectorIngenieria) {
+
+            if (e.getCedula().equals(cedula)) {
+
+                System.out.println("---------------------------------------");
+                System.out.println("\nRegistro encontrado:");
+                System.out.println(e);
+                System.out.println("---------------------------------------");
+
+                return;
+            }
+        }
+
+        System.out.println("---------------------------------------");
+        System.out.println("No se encontró el estudiante.");
+        System.out.println("---------------------------------------");
+
     }
 
     // Métodos diseño.
@@ -317,18 +449,4 @@ public class GestorPrestamos {
         }
     }
 
-    public int validarEntero() {
-
-        while (true) {
-
-            try {
-
-                return Integer.parseInt(sc.nextLine());
-
-            } catch (Exception e) {
-
-                System.out.print("Ingrese un número válido: ");
-            }
-        }
-    }
 }

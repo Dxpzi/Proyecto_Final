@@ -3,29 +3,31 @@ import java.util.Scanner;
 public class Validaciones {
 
     public int validarEntero(Scanner sc) {
-    if (!sc.hasNextInt()) {
-        System.out.println("Por favor ingrese un número válido:");
-        sc.nextLine();
-        return validarEntero(sc);
-    }
-    int num = sc.nextInt();
+        if (!sc.hasNextInt()) {
+            System.out.println("Por favor ingrese un número válido:");
+            sc.nextLine();
+            return validarEntero(sc);
+        }
+        int num = sc.nextInt();
 
-    sc.nextLine(); 
-    
-    return num;
+        sc.nextLine();
+
+        return num;
     }
 
     public String validarTexto(Scanner sc) {
 
         String txt = sc.nextLine().trim();
 
-        if (!txt.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")) {
+        if (!txt.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ¥¤ ]+")) {
 
             System.out.println("No se permiten números ni caracteres especiales. Intente nuevamente:");
-            
-            return validarTexto(sc); 
+
+            return validarTexto(sc);
         }
+
         return txt;
+
     }
 
     public String validarSN(Scanner sc) {
@@ -36,7 +38,7 @@ public class Validaciones {
 
             System.out.println("Solo puede ingresar S o N. Intente nuevamente:");
 
-            return validarSN(sc); 
+            return validarSN(sc);
         }
         return opt;
     }
@@ -48,8 +50,8 @@ public class Validaciones {
         if (!serial.matches("[a-zA-Z0-9]+")) {
 
             System.out.println("El serial solo acepta letras y números. Intente nuevamente:");
-           
-            return validarSerial(sc); 
+
+            return validarSerial(sc);
         }
         return serial;
     }
@@ -57,14 +59,80 @@ public class Validaciones {
     public double validarDouble(Scanner sc) {
 
         if (!sc.hasNextDouble()) {
-           
+
             System.out.println("Ingrese un valor numérico válido:");
-            
+
             sc.nextLine();
-            
-            return validarDouble(sc); 
+
+            return validarDouble(sc);
         }
-        return sc.nextDouble();
+
+        double valor = sc.nextDouble();
+        sc.nextLine();
+
+        return valor;
+    }
+
+    public String validarCedula(Scanner sc) {
+
+        String cedula = sc.nextLine().trim();
+
+        if (!cedula.matches("\\d+")) {
+
+            System.out.println("La cédula solo puede contener números. Intente nuevamente:");
+
+            return validarCedula(sc);
+        }
+
+        return cedula;
+    }
+
+    public String validarTelefono(Scanner sc) {
+
+        String telefono;
+
+        do {
+            telefono = sc.nextLine();
+
+            if (!telefono.matches("\\d{10}")) {
+                System.out.print("Ingrese un teléfono válido: ");
+            }
+
+        } while (!telefono.matches("\\d{10}"));
+
+        return telefono;
+    }
+
+    public int validarSemestre(Scanner sc) {
+
+        int semestre;
+
+        while (true) {
+
+            semestre = validarEntero(sc);
+
+            if (semestre >= 1 && semestre <= 10) {
+                return semestre;
+            }
+
+            System.out.print("Ingrese un semestre válido (1-10): ");
+        }
+    }
+
+    public double validarPromedio(Scanner sc) {
+
+        double promedio;
+
+        while (true) {
+
+            promedio = validarDouble(sc);
+
+            if (promedio >= 0 && promedio <= 5) {
+                return promedio;
+            }
+
+            System.out.print("Ingrese un promedio válido (0 - 5): ");
+        }
     }
 
 }

@@ -24,7 +24,9 @@ public class SubMenus {
             case 3:
                 return "Windows 11";
             default:
+                System.out.println("---------------------------------------");
                 System.out.println("Opción inválida.");
+                System.out.println("---------------------------------------");
 
                 return SeleccionarSO(); // Recursivo
         }
@@ -69,7 +71,9 @@ public class SubMenus {
             case 3:
                 return "1 TB";
             default:
+                System.out.println("---------------------------------------");
                 System.out.println("Opción inválida.");
+                System.out.println("---------------------------------------");
 
                 return SeleccionarAlmacenamiento();
         }
