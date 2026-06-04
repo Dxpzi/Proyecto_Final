@@ -8,6 +8,9 @@ public class GestorPrestamos {
 
     private ArrayList<EstudianteIngenieria> vectorIngenieria;
     private ArrayList<EstudianteDiseno> vectorDiseno;
+    private ArrayList<ComputadorPortatil> vectorPortatil;
+    private ArrayList<TabletaGrafica> vectorTableta;
+
     private Validaciones val;
 
     // PILA
@@ -22,6 +25,8 @@ public class GestorPrestamos {
 
         vectorIngenieria = new ArrayList<>();
         vectorDiseno = new ArrayList<>();
+        vectorPortatil = new ArrayList<>();
+        vectorTableta = new ArrayList<>();
 
         pilaDevoluciones = new Stack<>();
 
@@ -223,6 +228,22 @@ public class GestorPrestamos {
         System.out.print("Serial del equipo: ");
         String serial = val.validarSerial(sc);
 
+        System.out.print("Marca: ");
+        String marca = sc.nextLine();
+
+        System.out.print("Tamaño: ");
+        double tamano = sc.nextDouble();
+
+        System.out.print("Precio: ");
+        double precio = sc.nextDouble();
+        sc.nextLine();
+
+        System.out.print("Sistema Operativo: ");
+        String sistemaOperativo = sc.nextLine();
+
+        System.out.print("Procesador: ");
+        String procesador = sc.nextLine();
+
         for (EstudianteIngenieria e : vectorIngenieria) {
 
             if (e.getSerialEquipo().equals(serial)) {
@@ -255,7 +276,16 @@ public class GestorPrestamos {
                 promedio,
                 serial);
 
+        ComputadorPortatil portatil = new ComputadorPortatil(
+                serial,
+                marca,
+                tamano,
+                precio,
+                sistemaOperativo,
+                procesador);
+
         vectorIngenieria.add(estudiante);
+        vectorPortatil.add(portatil);
 
         colaEspera.offer(cedula);
         System.out.println("---------------------------------------");
@@ -328,7 +358,17 @@ public class GestorPrestamos {
                 pilaDevoluciones.push(cedula);
 
                 colaEspera.remove(cedula);
+                
+                String serial = vectorIngenieria.get(i).getSerialEquipo();
 
+                for (int j = 0; j < vectorPortatil.size(); j++) {
+
+                    if (vectorPortatil.get(j).getSerial().equals(serial)) {
+
+                        vectorPortatil.remove(j);
+                        break;
+                    }
+                }
                 vectorIngenieria.remove(i);
 
                 System.out.println("---------------------------------------");
@@ -414,6 +454,23 @@ public class GestorPrestamos {
         System.out.print("Serial del equipo: ");
         String serial = val.validarSerial(sc);
 
+        System.out.print("Marca: ");
+        String marca = sc.nextLine();
+
+        System.out.print("Tamaño: ");
+        double tamano = sc.nextDouble();
+
+        System.out.print("Precio: ");
+        double precio = sc.nextDouble();
+        sc.nextLine();
+
+        System.out.print("Almacenamiento: ");
+        String almacenamiento = sc.nextLine();
+
+        System.out.print("Peso: ");
+        double peso = sc.nextDouble();
+        sc.nextLine();
+
         for (EstudianteDiseno e : vectorDiseno) {
 
             if (e.getSerialEquipo().equals(serial)) {
@@ -446,7 +503,16 @@ public class GestorPrestamos {
                 asignaturas,
                 serial);
 
+        TabletaGrafica tableta = new TabletaGrafica(
+                serial,
+                marca,
+                tamano,
+                precio,
+                almacenamiento,
+                peso);
+
         vectorDiseno.add(estudiante);
+        vectorTableta.add(tableta);
 
         colaEspera.offer(cedula);
 
