@@ -491,12 +491,12 @@ public class GestorPrestamos {
         return false;
     }
 
-    public void buscarDiseno() {
+    public boolean buscarDiseno() {
 
         if (vectorDiseno.isEmpty()) {
 
             System.out.println("No hay registros.");
-            return;
+            return false;
         }
 
         System.out.print("Ingrese la cedula: ");
@@ -512,13 +512,14 @@ public class GestorPrestamos {
                 System.out.println(e);
                 System.out.println("---------------------------------------");
 
-                return;
+                return true;
             }
         }
 
         System.out.println("---------------------------------------");
         System.out.println("No se encontró el estudiante.");
         System.out.println("---------------------------------------");
+        return false;
     }
 
     // Inventario.
